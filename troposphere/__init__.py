@@ -60,6 +60,10 @@ class BaseAWSObject(object):
             # Special case Resource Attributes
             if k in self.attributes:
                 self.resource[k] = v
+            # Special case ResourceProperties
+            elif k == 'ResourceProperties':
+                for kk,vv in v.items():
+                    self.properties.__setitem__(kk,vv) ## TODO: need validation and expansion
             else:
                 self.__setattr__(k, v)
 
